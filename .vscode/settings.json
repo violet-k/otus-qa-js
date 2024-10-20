@@ -7,5 +7,7 @@
     "source.removeUnusedImports": "explicit",
     "source.organizeImports": "explicit",
     "source.fixAll.eslint": "explicit"
-  }
+  },
+  "javascript.preferences.quoteStyle": "single",
+  "typescript.preferences.quoteStyle": "single"
 }
