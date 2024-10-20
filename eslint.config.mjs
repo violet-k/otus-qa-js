@@ -1,4 +1,5 @@
 import pluginJs from '@eslint/js';
+import jest from 'eslint-plugin-jest';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
@@ -8,6 +9,10 @@ export default tseslint.config(
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   eslintPluginPrettierRecommended,
+  {
+    files: ['test/**'],
+    ...jest.configs['flat/recommended']
+  },
   {
     languageOptions: {
       parser: tseslint.parser,
