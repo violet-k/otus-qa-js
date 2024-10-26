@@ -48,3 +48,13 @@ export const getTotal = (items: Item[] = [], discount = 0) => {
   );
   return total * (1 - discount / 100);
 };
+
+export const getScore = (scores: Record<string, number> = {}) => {
+  return Object.values(scores).reduce((acc, score) => {
+    if (score < 0) {
+      throw new Error('Успеваемость должна быть неотрицательным числом');
+    }
+
+    return acc + score;
+  }, 0);
+};

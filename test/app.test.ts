@@ -1,4 +1,4 @@
-import { fullTrim, getTotal, nameIsValid } from 'src/app';
+import { fullTrim, getScore, getTotal, nameIsValid } from 'src/app';
 
 describe('nameIsValid', () => {
   it('имя должно быть строкой', () => {
@@ -81,6 +81,28 @@ describe('getTotal', () => {
   test.each(invalidCases)('$name', ({ products, discount, error }) => {
     expect(() => getTotal(products, discount as unknown as number)).toThrow(
       error
+    );
+  });
+});
+
+describe('getScore', () => {
+  it('корректно считает сумму', () => {
+    const scores = {
+      Anna: 10,
+      Olga: 1,
+      Ivan: 5
+    };
+    expect(getScore(scores)).toBe(16);
+  });
+
+  it('ошибка при передаче отрицательной успеваемости', () => {
+    const scores = {
+      Anna: 10,
+      Olga: -1,
+      Ivan: 5
+    };
+    expect(() => getScore(scores)).toThrow(
+      'Успеваемость должна быть неотрицательным числом'
     );
   });
 });
