@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "NodeNext",
+    "module": "ESNext",
     "target": "ESNext",
     "strict": true,
     "noFallthroughCasesInSwitch": true,
@@ -12,7 +12,10 @@
     "baseUrl": ".",
     "preserveSymlinks": true,
     "rootDir": ".",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "src": ["./src"]
+    }
   },
   "exclude": ["node_modules", "eslint.config.mjs"],
   "include": ["**/*.ts"],
