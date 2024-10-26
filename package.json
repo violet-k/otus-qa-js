@@ -2,19 +2,30 @@
   "name": "otus-qa-js",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.ts",
+  "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "clean": "rm -rf dist",
+    "build": "run-s clean build:ts",
+    "build:ts": "tsc -b",
+    "run": "node dist/src/tale.js",
+    "dev": "run-s build run"
   },
   "keywords": [],
   "author": "Violet Kiseleva",
   "license": "ISC",
   "devDependencies": {
     "@eslint/js": "^9.12.0",
+    "@types/eslint-config-prettier": "^6.11.3",
+    "@types/eslint__eslintrc": "^2.1.2",
+    "@types/eslint__js": "^8.42.3",
     "eslint": "^9.12.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.11.0",
-    "prettier": "^3.3.3"
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.10.0",
+    "npm-run-all": "^4.1.5"
   }
 }

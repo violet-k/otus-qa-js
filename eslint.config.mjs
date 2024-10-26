@@ -1,9 +1,27 @@
 import pluginJs from '@eslint/js';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
-export default [
+export default tseslint.config(
   { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
   pluginJs.configs.recommended,
-  eslintPluginPrettierRecommended
-];
+  ...tseslint.configs.recommended,
+  eslintPluginPrettierRecommended,
+  {
+    languageOptions: {
+      parser: tseslint.parser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        project: ['./tsconfig.json']
+      }
+    },
+    rules: {
+      'prefer-template': 'error'
+    }
+  },
+  {
+    ignores: ['dist', 'eslint.config.mjs']
+  }
+);
