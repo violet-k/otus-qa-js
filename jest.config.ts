@@ -1,3 +1,5 @@
+import type { Config } from 'jest';
+
 export default {
   coverageProvider: 'v8',
   testEnvironment: 'node',
@@ -5,6 +7,9 @@ export default {
   transform: { '^.+\\.(ts|tsx)$': '@swc/jest' },
   verbose: true,
   moduleNameMapper: {
-    'src/(.*)$': '<rootDir>/src/$1'
+    '^config(.*)$': '<rootDir>/framework/config/$1',
+    '^fixtures(.*)$': '<rootDir>/framework/fixtures/$1',
+    '^services(.*)$': '<rootDir>/framework/services/$1',
+    '^types(.*)$': '<rootDir>/framework/types/$1'
   }
-};
+} as Config;

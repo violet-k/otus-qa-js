@@ -2,6 +2,7 @@
   "compilerOptions": {
     "module": "ESNext",
     "target": "ESNext",
+    "moduleResolution": "Node",
     "strict": true,
     "noFallthroughCasesInSwitch": true,
     "strictNullChecks": true,
@@ -13,11 +14,20 @@
     "preserveSymlinks": true,
     "rootDir": ".",
     "skipLibCheck": true,
+    "tsBuildInfoFile": "./tsconfig.tsbuildinfo",
     "paths": {
-      "src": ["./src"]
+      "config": ["./framework/config"],
+      "fixtures": ["./framework/fixtures"],
+      "services": ["./framework/services"],
+      "types/*": ["./framework/types/*"]
     }
   },
-  "exclude": ["node_modules", "eslint.config.mjs"],
-  "include": ["**/*.ts"],
-  "tsBuildInfoFile": "./tsconfig.tsbuildinfo"
+  "exclude": [
+    "node_modules",
+    "eslint.config.mjs"
+  ],
+  "include": [
+    "**/*.ts"
+  ],
+  
 }
