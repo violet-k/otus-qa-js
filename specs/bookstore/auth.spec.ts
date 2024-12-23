@@ -1,15 +1,14 @@
 import { bookstore } from 'config';
 import { AuthService } from 'services';
-import { TokenData } from 'types/bookstore';
 
 const user = bookstore.credentials;
 
 describe('Авторизация', () => {
   it('успех', async () => {
-    const { data, status } = await AuthService.authorize(user);
-    const { data: isAuthorized } = await AuthService.authorized(user);
+    const [{ data, status }] = await AuthService.authorize(user);
+    const [{ data: isAuthorized }] = await AuthService.authorized(user);
 
-    const { token, expires, status: authStatus } = data as TokenData;
+    const { token, expires, status: authStatus } = data;
 
     expect(status).toEqual(200);
     expect(token).toBeTruthy();
@@ -19,12 +18,11 @@ describe('Авторизация', () => {
   });
 
   it('ошибка', async () => {
-    const { data, status } = await AuthService.authorize({
+    const [{ data, status }] = await AuthService.authorize({
       ...user,
       password: 'password'
     });
-    const { token, status: authStatus } = data as TokenData;
-    console.log(data);
+    const { token, status: authStatus } = data;
 
     expect(status).toEqual(200);
     expect(token).toEqual(null);
