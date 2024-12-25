@@ -3,9 +3,9 @@ import { bookstore } from 'config';
 import {
   BookstoreErrorResponse,
   CreatedUserData,
-  TokenData,
   UserCredentials,
-  UserData
+  UserData,
+  WithToken
 } from 'types/bookstore';
 import { axios } from './axios';
 
@@ -29,10 +29,8 @@ const create = async ({
   ];
 };
 
-interface GetProps {
-  userId: UserData['userId'];
-  token: TokenData['token'];
-}
+type GetProps = WithToken<Pick<UserData, 'userId'>>;
+
 const get = async ({
   userId,
   token

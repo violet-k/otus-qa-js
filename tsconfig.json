@@ -15,6 +15,7 @@
     "rootDir": ".",
     "skipLibCheck": true,
     "tsBuildInfoFile": "./tsconfig.tsbuildinfo",
+    "resolveJsonModule": true,
     "paths": {
       "config": ["./framework/config"],
       "fixtures": ["./framework/fixtures"],
@@ -22,12 +23,6 @@
       "types/*": ["./framework/types/*"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "eslint.config.mjs"
-  ],
-  "include": [
-    "**/*.ts"
-  ],
-  
+  "exclude": ["node_modules", "eslint.config.mjs"],
+  "include": ["**/*.ts"]
 }
