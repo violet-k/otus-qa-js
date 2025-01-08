@@ -20,6 +20,7 @@
       "config": ["./framework/config"],
       "fixtures": ["./framework/fixtures"],
       "services": ["./framework/services"],
+      "schemas": ["./framework/schemas"],
       "types/*": ["./framework/types/*"]
     }
   },

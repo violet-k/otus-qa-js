@@ -1,8 +1,13 @@
+import Ajv from 'ajv';
 import { UserFixtures } from 'fixtures';
+import { userSchema } from 'schemas';
 import { AuthService, UserService } from 'services';
 import { CreatedUserData } from 'types/bookstore';
 
 const user = UserFixtures.generateUser();
+
+const ajv = new Ajv();
+const validateUser = ajv.compile(userSchema);
 
 describe('Bookstore User', () => {
   let token = '';
@@ -14,6 +19,7 @@ describe('Bookstore User', () => {
 
       createdUser = data;
 
+      expect(validateUser(data)).toBe(true);
       expect(status).toEqual(201);
     });
 

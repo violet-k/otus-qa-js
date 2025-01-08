@@ -1,8 +1,13 @@
+import Ajv from 'ajv';
 import { books, UserFixtures } from 'fixtures';
+import { bookSchema } from 'schemas';
 import { AuthService, BooksService, UserService } from 'services';
 import { CreatedUserData } from 'types/bookstore';
 
 const user = UserFixtures.generateUser();
+
+const ajv = new Ajv();
+const validateBook = ajv.compile(bookSchema);
 
 const nonExistingISBNs = ['1', '2', '3'];
 const booksToAdd = [books[1], books[2], books[3]];
@@ -57,6 +62,7 @@ describe('Bookstore Books', () => {
       });
 
       expect(status).toEqual(200);
+      expect(validateBook(data)).toBe(true);
       expect(data).toStrictEqual(book);
     }
   );
