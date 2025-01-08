@@ -2,7 +2,6 @@ import type { Config } from 'jest';
 
 export default {
   coverageProvider: 'v8',
-  testEnvironment: 'node',
   reporters: ['default', ['github-actions', { silent: false }], 'summary'],
   transform: { '^.+\\.(ts|tsx)$': '@swc/jest' },
   verbose: true,
@@ -13,5 +12,9 @@ export default {
     '^schemas(.*)$': '<rootDir>/framework/schemas/$1',
     '^types(.*)$': '<rootDir>/framework/types/$1'
   },
-  setupFilesAfterEnv: ['./setupJest.ts']
+  setupFilesAfterEnv: ['./setupJest.ts'],
+  testEnvironment: 'allure-jest/node',
+  testEnvironmentOptions: {
+    resultsDir: 'reports/allure-results'
+  }
 } as Config;
