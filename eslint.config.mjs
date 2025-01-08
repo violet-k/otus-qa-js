@@ -10,7 +10,7 @@ export default tseslint.config(
   ...tseslint.configs.recommended,
   eslintPluginPrettierRecommended,
   {
-    files: ['specs/**'],
+    files: ['specs/**', 'setupJest.ts'],
     ...jest.configs['flat/recommended']
   },
   {
