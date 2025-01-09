@@ -16,10 +16,11 @@
     "lint": "eslint . --fix",
     "typecheck": "tsc --noEmit",
     "allure": "run-s allure:test allure:history allure:generate allure:open",
-    "allure:test": "zx scripts/allure.zx.mjs",
-    "allure:history": "node scripts/allure-history.mjs",
+    "allure:test": "zx scripts/allure/index.zx.mjs",
+    "allure:history": "node scripts/allure/history.mjs",
     "allure:generate": "allure generate reports/allure-results --clean --report-dir reports/allure-report",
-    "allure:open": "allure open reports/allure-report -p 4000"
+    "allure:open": "allure open reports/allure-report -p 4000",
+    "allure:ci": "zx scripts/allure/ci.zx.mjs"
   },
   "keywords": [],
   "author": "Violet Kiseleva",
