@@ -1,6 +1,17 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
 
 jobs:
   codestyle:
@@ -34,7 +45,14 @@ jobs:
       - run: pnpm typecheck
 
   test:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-latest
+
+    outputs:
+      result: ${{ steps.allure.outputs.result }}
 
     steps:
       - uses: actions/checkout@v4
@@ -47,4 +65,34 @@ jobs:
           cache: 'pnpm'
       - run: pnpm i --frozen-lockfile
       - run: echo "${{ vars.ENV }}" >> .env
-      - run: pnpm test
+      - run: |
+          git config --global user.name "Violet"
+          git config --global user.email "52976585+violet-k@users.noreply.github.com"
+      - name: Run tests and generate reports
+        id: allure
+        run: npm run allure:ci
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'reports/allure-report'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  notification:
+    if: always()
+    needs: [codestyle, typecheck, test]
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          curl --request POST \
+               --url https://api.telegram.org/bot${{secrets.TELEGRAM_TOKEN}}/sendMessage \
+               --header 'Content-Type: application/json' \
+               --data '{ "chat_id": "${{secrets.TELEGRAM_CHAT_ID}}", "text": "${{ needs.test.outputs.result }}\nReport link: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" }'
