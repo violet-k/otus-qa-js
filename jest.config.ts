@@ -16,5 +16,6 @@ export default {
   testEnvironment: 'allure-jest/node',
   testEnvironmentOptions: {
     resultsDir: 'reports/allure-results'
-  }
+  },
+  testPathIgnorePatterns: ['e2e']
 } as Config;
