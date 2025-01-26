@@ -49,7 +49,10 @@ importers:
         version: 2.32.0
       allure-jest:
         specifier: ^3.0.8
-        version: 3.0.8(jest-circus@29.7.0)(jest-cli@29.7.0(@types/node@22.10.1)(ts-node@10.9.2(@swc/core@1.10.0)(@types/node@22.10.1)(typescript@5.7.2)))(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@22.10.1)(ts-node@10.9.2(@swc/core@1.10.0)(@types/node@22.10.1)(typescript@5.7.2)))
+        version: 3.0.8(allure-playwright@3.0.9(@playwright/test@1.50.0))(jest-circus@29.7.0)(jest-cli@29.7.0(@types/node@22.10.1)(ts-node@10.9.2(@swc/core@1.10.0)(@types/node@22.10.1)(typescript@5.7.2)))(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@22.10.1)(ts-node@10.9.2(@swc/core@1.10.0)(@types/node@22.10.1)(typescript@5.7.2)))
+      allure-playwright:
+        specifier: ^3.0.9
+        version: 3.0.9(@playwright/test@1.50.0)
       axios:
         specifier: ^1.7.9
         version: 1.7.9
@@ -746,6 +749,19 @@ packages:
     peerDependenciesMeta:
       allure-playwright:
         optional: true
+
+  allure-js-commons@3.0.9:
+    resolution: {integrity: sha512-ll7h66zkBAwKSuMv2ZIqa9vXztz/I1Q+oUzxMgg7EErwd6ooO04E4nquXE+rS9mJErYs9K1qTVo3KgnPUzCsQQ==}
+    peerDependencies:
+      allure-playwright: 3.0.9
+    peerDependenciesMeta:
+      allure-playwright:
+        optional: true
+
+  allure-playwright@3.0.9:
+    resolution: {integrity: sha512-5NBVJ50b9iYbzhkLJF0iSWefV4/eWSv+OioRv4kpLKXbnhrQk+wUH/wVt7oxWnZPSrQAuxilckWxZW5BIP3sNQ==}
+    peerDependencies:
+      '@playwright/test': '>=1.36.0'
 
   ansi-escapes@4.3.2:
     resolution: {integrity: sha512-gKXj5ALrKWQLsYG9jlTRmR/xKluxHV+Z9QEwNIgCfM1/uwPMCuzVVnh5mwTd+OuBZcwSIMbqssNWRm1lE51QaQ==}
@@ -3244,9 +3260,9 @@ snapshots:
 
   allure-commandline@2.32.0: {}
 
-  allure-jest@3.0.8(jest-circus@29.7.0)(jest-cli@29.7.0(@types/node@22.10.1)(ts-node@10.9.2(@swc/core@1.10.0)(@types/node@22.10.1)(typescript@5.7.2)))(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@22.10.1)(ts-node@10.9.2(@swc/core@1.10.0)(@types/node@22.10.1)(typescript@5.7.2))):
+  allure-jest@3.0.8(allure-playwright@3.0.9(@playwright/test@1.50.0))(jest-circus@29.7.0)(jest-cli@29.7.0(@types/node@22.10.1)(ts-node@10.9.2(@swc/core@1.10.0)(@types/node@22.10.1)(typescript@5.7.2)))(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@22.10.1)(ts-node@10.9.2(@swc/core@1.10.0)(@types/node@22.10.1)(typescript@5.7.2))):
     dependencies:
-      allure-js-commons: 3.0.8
+      allure-js-commons: 3.0.8(allure-playwright@3.0.9(@playwright/test@1.50.0))
     optionalDependencies:
       jest: 29.7.0(@types/node@22.10.1)(ts-node@10.9.2(@swc/core@1.10.0)(@types/node@22.10.1)(typescript@5.7.2))
       jest-circus: 29.7.0
@@ -3255,9 +3271,22 @@ snapshots:
     transitivePeerDependencies:
       - allure-playwright
 
-  allure-js-commons@3.0.8:
+  allure-js-commons@3.0.8(allure-playwright@3.0.9(@playwright/test@1.50.0)):
     dependencies:
       md5: 2.3.0
+    optionalDependencies:
+      allure-playwright: 3.0.9(@playwright/test@1.50.0)
+
+  allure-js-commons@3.0.9(allure-playwright@3.0.9(@playwright/test@1.50.0)):
+    dependencies:
+      md5: 2.3.0
+    optionalDependencies:
+      allure-playwright: 3.0.9(@playwright/test@1.50.0)
+
+  allure-playwright@3.0.9(@playwright/test@1.50.0):
+    dependencies:
+      '@playwright/test': 1.50.0
+      allure-js-commons: 3.0.9(allure-playwright@3.0.9(@playwright/test@1.50.0))
 
   ansi-escapes@4.3.2:
     dependencies:

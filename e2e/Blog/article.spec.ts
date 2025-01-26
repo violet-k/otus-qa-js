@@ -55,7 +55,7 @@ test.describe('Дом.РФ - Блог - Статья', () => {
 
     await lastContentsItem.click();
 
-    await await expect(lastHeadingItem).toBeVisible();
+    await expect(lastHeadingItem).toBeVisible();
   });
 
   test('содержание - поделиться - скопировать ссылку', async ({
