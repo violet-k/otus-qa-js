@@ -21,6 +21,8 @@
       "fixtures": ["./framework/fixtures"],
       "services": ["./framework/services"],
       "schemas": ["./framework/schemas"],
+      "pages": ["./framework/pages"],
+      "actions": ["./framework/actions"],
       "types/*": ["./framework/types/*"]
     }
   },
