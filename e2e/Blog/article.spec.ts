@@ -41,10 +41,10 @@ test.describe('Дом.РФ - Блог - Статья', () => {
     const preLast = await page.locator(selectors.breadcrumbs_item).nth(-2);
     const title = await page.locator(selectors.content_title);
 
-    expect(last.textContent).toBe(title.textContent);
+    await expect(await last.textContent()).toBe(await title.textContent());
 
     await preLast.click();
-    expect(page.url().endsWith(paths.blog_all)).toBe(true);
+    await expect(page.url().endsWith(paths.blog_all)).toBe(true);
   });
 
   test('содержание - переход к заголовку', async ({ page }) => {
@@ -54,9 +54,8 @@ test.describe('Дом.РФ - Блог - Статья', () => {
       .last();
 
     await lastContentsItem.click();
-    await lastHeadingItem.waitFor({ state: 'visible' });
 
-    expect(lastHeadingItem).toBeVisible();
+    await expect(lastHeadingItem).toBeVisible();
   });
 
   test('содержание - поделиться - скопировать ссылку', async ({
@@ -75,7 +74,7 @@ test.describe('Дом.РФ - Блог - Статья', () => {
       navigator.clipboard.readText()
     );
 
-    expect(clipboardContent).toBe(URL);
+    await expect(clipboardContent).toBe(URL);
   });
 
   test('похожие статьи - все статьи', async ({ page }) => {
@@ -83,6 +82,6 @@ test.describe('Дом.РФ - Блог - Статья', () => {
 
     await allArticles.click();
 
-    expect(page.url().endsWith(paths.blog_all)).toBe(true);
+    await expect(page.url().endsWith(paths.blog_all)).toBe(true);
   });
 });
