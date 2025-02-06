@@ -26,6 +26,6 @@
       "types/*": ["./framework/types/*"]
     }
   },
-  "exclude": ["node_modules", "eslint.config.mjs"],
+  "exclude": ["node_modules", "codeceptjs", "eslint.config.mjs"],
   "include": ["**/*.ts"]
 }

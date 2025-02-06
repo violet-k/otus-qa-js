@@ -1,0 +1,23 @@
+{
+  "name": "otus-qa-js-codeceptjs",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "codeceptjs": "codeceptjs run --steps",
+    "codeceptjs:ci": "HEADLESS=true codeceptjs run --steps",
+    "codeceptjs:ui": "codecept-ui --app"
+  },
+  "keywords": [],
+  "author": "Violet Kiseleva",
+  "license": "ISC",
+  "devDependencies": {
+    "@codeceptjs/configure": "^1.0.2",
+    "@codeceptjs/examples": "^1.2.4",
+    "@codeceptjs/ui": "^1.2.0",
+    "@playwright/test": "^1.50.0",
+    "codeceptjs": "^3.6.10",
+    "playwright": "^1.50.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}

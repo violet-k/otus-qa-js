@@ -7,22 +7,16 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 2 : 4,
   timeout: 5 * 60 * 1000,
-  reporter: [
-    ['line'],
-    ['allure-playwright', { resultsDir: 'reports/allure-results' }]
-  ],
-  use: {
-    trace: 'on-first-retry'
-  },
+  reporter: process.env.CI
+    ? 'line'
+    : [
+        ['line'],
+        ['allure-playwright', { resultsDir: 'reports/allure-results' }]
+      ],
   projects: [
     {
       name: '[Playwright] Дом.РФ',
       testDir: './e2e/Blog',
-      use: { ...devices['Desktop Chrome'] }
-    },
-    {
-      name: '[Playwright] RWA Article',
-      testDir: './e2e/RWA',
       use: { ...devices['Desktop Chrome'] }
     },
     {

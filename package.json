@@ -21,7 +21,9 @@
     "allure:history": "node scripts/allure/history.mjs",
     "allure:generate": "allure generate reports/allure-results --clean --report-dir reports/allure-report",
     "allure:open": "allure open reports/allure-report -p 4000",
-    "allure:ci": "zx scripts/allure/ci.zx.mjs"
+    "allure:ci": "zx scripts/allure/ci.zx.mjs",
+    "codeceptjs": "cd codeceptjs && pnpm codeceptjs",
+    "codeceptjs:ci": "cd codeceptjs && pnpm codeceptjs:ci"
   },
   "keywords": [],
   "author": "Violet Kiseleva",
@@ -37,7 +39,7 @@
     "@types/eslint__js": "^8.42.3",
     "@types/jest": "^29.5.13",
     "@types/jest-json-schema": "^6.1.4",
-    "@types/node": "^22.8.1",
+    "@types/node": "^22.10.1",
     "ajv": "^8.17.1",
     "allure-commandline": "^2.32.0",
     "allure-jest": "^3.0.8",
@@ -58,7 +60,7 @@
     "npm-run-all2": "^7.0.2",
     "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.3",
+    "typescript": "^5.7.2",
     "typescript-eslint": "^8.10.0",
     "zx": "^8.3.0"
   }

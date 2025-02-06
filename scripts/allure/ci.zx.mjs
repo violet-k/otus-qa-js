@@ -11,8 +11,13 @@ const ALLURE_REPORT_PATH =
 await fs.remove(ALLURE_RESULT_PATH);
 
 const { exitCode: exitCodeJest } = await $`pnpm test`.nothrow();
+
+$.verbose = true;
 const { exitCode: exitCodePlaywright } = await $`pnpm test:e2e:ci`.nothrow();
-const exitCode = exitCodeJest || exitCodePlaywright;
+const { exitCode: exitCodeCodeceptJS } = await $`pnpm codeceptjs:ci`.nothrow();
+$.verbose = false;
+
+const exitCode = exitCodeJest || exitCodePlaywright || exitCodeCodeceptJS;
 const result = exitCode === 0 ? '🟢 Tests passed\n' : '🔴 Tests failed\n';
 
 await $`node scripts/allure/load.mjs`;
