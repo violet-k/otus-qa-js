@@ -64,6 +64,7 @@ jobs:
           node-version: 20.18.0
           cache: 'pnpm'
       - run: pnpm i --frozen-lockfile
+      - run: cd codeceptjs && pnpm i --frozen-lockfile && cd ../
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps
       - run: echo "${{ vars.ENV }}" >> .env
@@ -72,7 +73,7 @@ jobs:
           git config --global user.email "52976585+violet-k@users.noreply.github.com"
       - name: Run tests and generate reports
         id: allure
-        run: npm run allure:ci
+        run: pnpm allure:ci
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact

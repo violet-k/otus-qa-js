@@ -33,7 +33,8 @@ export default tseslint.config(
       'reports',
       'scripts/**/*.mjs',
       'playwright-report',
-      'test-results'
+      'test-results',
+      'codeceptjs'
     ]
   }
 );

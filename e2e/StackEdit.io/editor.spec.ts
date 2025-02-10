@@ -99,6 +99,7 @@ test.describe('StackEdit.io - Редактор', () => {
   });
 
   test('текст - жирный', async () => {
+    await page.reload();
     const editor = await EditorPage({ page });
     await editor.fill(TEXT);
     await editor.select();
@@ -110,6 +111,7 @@ test.describe('StackEdit.io - Редактор', () => {
   });
 
   test('текст - курсив', async () => {
+    await page.reload();
     const editor = await EditorPage({ page });
     await editor.fill(TEXT);
     await editor.select();
